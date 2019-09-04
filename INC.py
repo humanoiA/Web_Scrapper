@@ -23,12 +23,12 @@ for i in range(15,63):
     if a.startswith('/'):
         b=my_url[0:len(my_url)-1]+a.replace('">','--')
         c=b.split('--')
-        #mycursor.execute("INSERT INTO links_dmoz (hyperlink, hyperlink_title) VALUES('"+c[0]+"','"+c[1]+"')")
+        mycursor.execute("INSERT INTO links_dmoz (hyperlink, hyperlink_title) VALUES('"+c[0]+"','"+c[1]+"')")
         #mydb.commit()
-        print(c[0]+'---'+c[1])
+        #print(c[0]+'---'+c[1])
     else:
         b=a.replace('">','--')
         c=b.split('--')
-        #mycursor.execute("INSERT INTO links_dmoz (hyperlink, hyperlink_title) VALUES('"+c[0]+"','"+c[1]+"')")
-        #mydb.commit()
-        print(c[0]+'---'+c[1])
+        mycursor.execute("INSERT INTO links_dmoz (hyperlink, hyperlink_title) VALUES('"+c[0]+"','"+c[1]+"')")
+        #print(c[0]+'---'+c[1])
+mydb.commit()
