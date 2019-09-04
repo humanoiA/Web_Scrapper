@@ -16,7 +16,7 @@ uClient.close()
 page_soup=soup(page_html,'html.parser')
 layers=list(page_soup.findAll("a",href=True))
 #print(layers)
-for i in range(0,len(layers)):
+for i in range(15,63):
     a=re.sub(r'<a.+?href="', '', str(layers[i]).replace('</a>',''))
     a=re.sub(r'".+?">', '--',a)
     a=re.sub(r'<.+?>', '',a)
