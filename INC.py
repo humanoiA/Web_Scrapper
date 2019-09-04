@@ -1,7 +1,14 @@
 import re
+import mysql.connector
 import bs4
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
+mydb= mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="atgworld",
+    database="shubhang")
+mycursor = mydb.cursor()
 my_url='https://dmoz-odp.org/'
 uClient=uReq(my_url)
 page_html=uClient.read()
@@ -16,8 +23,11 @@ for i in range(0,len(layers)):
     if a.startswith('/'):
         b=my_url[0:len(my_url)-1]+a.replace('">','--')
         c=b.split('--')
-        print(c[0])
+        mycursor.execute("INSERT INTO links_dmoz (hyperlink, hyperlink_title) VALUES("+c[0]+","+c[1]+")")
+        mydb.commit()
+        #print(c[0])
     else:
         b=a.replace('">','--')
         c=b.split('--')
-        print(c[0])
+        mycursor.execute("INSERT INTO links_dmoz (hyperlink, hyperlink_title) VALUES("+c[0]+","+c[1]+")")
+        mydb.commit()
